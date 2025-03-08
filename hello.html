@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <style>
+        body {
+    
+    color: #EAEAEA; /* Light gray text */
+    background: #b3bfb6;
+}
+    p{
+        color:black;
+        
+    }        
+
+        /* Reset Default Margin & Padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+
+        /* Sticky Header */
+        #sale {   
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;                      
+            background-color:#415256;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;   
+        }
+
+        /* Logo */
+        #sale img {
+            height: 70px;
+            width: 70px;
+            border-radius: 50%; 
+            transition: 0.4s;
+        }
+
+        /* Right section (Search bar & icons) */
+        #sale-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Search Bar */
+        #searchBar {
+            background-color: gainsboro;
+            height: 35px;
+            width: 300px;
+            border: none;
+            padding-left: 10px;
+            border-radius: 5px;
+        }
+
+        /* Search Icon */
+        .searchIcon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Icons */
+        ion-icon {
+            font-size: 28px;
+            color: black;
+            cursor: pointer;
+        }
+
+       /* Product Section */
+       .allImages {
+            margin-top: 20px;
+            padding: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Product Card */
+        .product {
+            
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 13px;
+            text-align: center;
+            width: 200px; /* Fixed width */
+            height: 350px; /* Fixed height */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            align-items:flex-start; /* Center align text */
+            border: none;            
+            
+        }
+
+
+        .product p{
+            margin: 5px 0;
+        }
+
+        .product button{
+            width: 100%;
+        }
+        
+
+        
+
+        /* Image Container */
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        /* Inner Wrapper for Sliding Effect */
+        .image-wrapper {
+            display: flex;
+            width: 200px;/* for all the 3 images */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Images inside Wrapper */
+        .image-wrapper img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 8px;
+        }
+
+        /* Hover Effect for Sliding Images */
+        .product:hover .image-wrapper {
+            animation: slideImages 3s ease-in-out;
+        }
+        
+        a{
+         padding-right: 35px;
+         font-size: 20px; 
+         color:#1588fc;
+         transition: text-shadow 0.3s ease; 
+         text-decoration: none;
+        }
+
+        a:hover{
+            font-size: 28px;            
+            color:#1588fc;
+            padding-right:40px;
+            
+        }
+
+        
+
+        /* Keyframes for Sliding */
+        @keyframes slideImages {
+            0% { transform: translateX(0); }    /* First Image */
+            33% { transform: translateX(-100%); } /* Second Image */
+            66% { transform: translateX(-200%); } /* Third Image */
+            100% { transform: translateX(0); }  /* Back to First Image */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) { /* Tablet & Laptop (Same Layout) */
+            #sale {
+                flex-direction: row;
+                 padding: 15px;
+            }
+
+            #sale img {
+                height: 60px;
+                width: 60px;
+            }
+
+            #sale-right {
+                flex-direction: column;
+                gap: 8px;
+                margin-top: 7px;
+            }
+
+            #searchBar {
+                width: 170px;
+                height: 40px;
+                
+            }
+
+            ion-icon {
+                font-size:25px;
+            }
+            .aTags{
+                width:fit-content;
+            }
+            a{
+                font-size: 16px;
+                padding-right: 7px;
+                padding-left:0px;
+                text-decoration: none;
+            }
+        }
+        
+
+       
+        @media screen and (max-width: 425px) { /* Mobile */
+            #sale {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+                width:100%;
+                
+            }
+
+            #sale img {
+                height: 40px;
+                width: 40px;
+            }
+
+            #sale-right {
+                flex-direction: column;
+                gap: 3px;
+                margin-top: 7px;
+            }
+
+            #searchBar {
+                width: 170px;
+                height: 30px;
+            }
+
+            ion-icon {
+                font-size: 24px;
+            }
+
+            a{
+                font-size: 12px;
+                padding-right: 10px;
+                padding-left:0px;
+            }
+        }
+            @media screen and (max-width: 375px) { /* Mobile */
+            #sale {
+                flex-direction: column;
+                text-align: center;
+                padding: 7px;
+            }
+
+            #sale img {
+                height: 25px;
+                width: 25px;
+            }
+
+            #sale-right {
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 10px;
+            }
+
+            #searchBar {
+                width: 170px;
+                height: 30px;
+            }
+
+            ion-icon {
+                font-size: 18px;
+            }
+
+            /* Product Grid Adjustments */
+            .product {
+                width: 100%; /* Full width on smaller screens */
+            }
+        }
+        /* Sticky Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    z-index: 1000;
+}
+
+/* Push the main content below the navbar */
+.container {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 60px; /* Adjust according to navbar height */
+}
+
+/* Sidebar (Images on the left) */
+.sidebar {
+    width: 80%;
+    padding: 1=0px;
+    background: #b3bfb6;
+    height: calc(100vh - 60px); /* Full height minus navbar */
+    overflow-y: auto;
+    position: sticky;
+    top: 60px; /* Starts below the navbar */
+    max-width:263px;
+    
+}
+
+.sidebar::-webkit-scrollbar{
+    display:none;
+}
+
+.sidebar a{
+    text-decoration: none;
+    font-size: 25px;
+    text-indent: 15px;
+    align-items: center;
+    color:#1588fc;
+    
+    
+}
+
+.sidebar p{
+    color:white;
+}
+
+.sidebar p::before{
+    content:  "☐ ";
+}
+
+
+@media screen and (max-width: 475px) { /* Mobile */
+           
+        .sidebar{
+            display:none;
+            
+        }
+
+        
+}
+
+@media screen and (max-width: 770px) { /* Mobile */
+       
+    .sidebar{
+        width:156%px;
+       }
+
+    .sidebar a{
+    text-decoration: none;
+    font-size: 16px;
+    text-indent: 9px;
+    align-items: center;
+    color:#1588fc;
+    
+    
+}
+
+.sidebar p{
+    color:white;
+}
+
+.sidebar p::before{
+    content:  "☐ ";
+    font-size: 10px;
+}  
+           
+   }
+
+/* Products Section (Takes Remaining Space) */
+.products {
+    width: 80%;
+    padding: 20px;
+}
+
+/* Modal for Fullscreen Image */
+.modal {
+    display: none;
+    position: fixed;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0 ,0 ,0 , 1);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal img {
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    background: black;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: sticky;
+}
+
+.container2 {
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 0;
+    color:white;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+}
+
+.footer-section h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+    color:white;
+}
+
+.footer-section p{
+    color:white;
+}
+.footer-section a {
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+    color:white;
+}
+
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* four columns side by side */
+.column {
+  float: left;
+  width: 300px;
+  height:fit-content;
+  margin-bottom: 16px;
+  margin-left: 70px;
+  margin-top: 30px;
+  padding: 15px 30px;   
+  align-items: center;
+  animation: pulse 2s ease-in-out infinite;
+  
+}
+
+@keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+
+
+
+
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Add some shadows to create a card effect */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card img{
+    height:250px;
+    width:fit-content;
+}
+
+/* Some left and right padding inside the container */
+.container3 {
+  padding: 0 16px;
+  padding-bottom: 10px;
+  height:max-content;
+  background-color: whitesmoke;
+  
+}
+
+
+.card {
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    
+   
+}
+
+.card:hover {
+    transform: scale(1.08);
+    border:5px rgb(245, 151, 170);
+}
+
+.container3 h3 p{
+ padding-bottom: 5px;
+}
+
+/* Clear floats */
+.container3::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+h2{
+    color:#555;
+}
+
+ 
+.word span {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            color:black;
+            font-size: 100px;
+            padding-left: 12px;
+        
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }        
+        .word span:nth-child(1) { animation-delay: 0.2s; }
+        .word span:nth-child(2) { animation-delay: 0.4s; }
+        .word span:nth-child(3) { animation-delay: 0.6s; }
+        .word span:nth-child(4) { animation-delay: 0.8s; }
+        .word span:nth-child(5) { animation-delay: 1s; }
+        .word span:nth-child(6) { animation-delay: 1.2s; }
+        .word span:nth-child(7) { animation-delay: 1.4s; }
+        .word span:nth-child(8) { animation-delay: 1.6s; }
+        .word span:nth-child(9) { animation-delay: 1.8s; }
+        .word span:nth-child(10) { animation-delay: 2s; }
+        .word span:nth-child(11) { animation-delay: 2.2s; }
+        .word span:nth-child(12) { animation-delay: 2.4s; }
+        .word span:nth-child(13) { animation-delay: 2.6s; }
+        .word span:nth-child(14) { animation-delay: 2.8s; }
+
+.ratingStar{
+    font-size: 22px;
+    color:black;
+}
+
+@media screen and (max-width: 475px) {
+    .word span{
+        font-size: 28px;
+    }
+}
+
+
+    </style>  
+         
+</head>
+<body>       
+    <!-- Sticky Navbar -->
+    <div id="sale">
+        <img src="logo3.jpg" class="logo" id="logo"> 
+        <div class="aTags" >
+            <a href="" >All</a>
+            <a href="#" onclick="showFrockImages()">Frocks</a>
+            <a href="#" onclick="showJeansImages()" >Jeans</a>
+            <a href="#" onclick="showLehengaImages()">Lehenga</a>
+            <a href="#" onclick="showSareeImages()">Sarees</a>
+            <a href="#" onclick="showShrugImages()">Shrugs</a>
+        </div>                               
+        <div id="sale-right">
+            <input type="text" id="searchBar" name="searchName" placeholder="Search.....">
+            <ion-icon class="searchIcon" name="search"></ion-icon>
+            <ion-icon class="cartIcon" name="cart"></ion-icon>
+            <ion-icon class="profileIcon" name="contact"></ion-icon>                    
+        </div>
+    </div>
+
+    
+
+    <!-- Product Section and sidenav-->
+    <div class="container">
+        <!-- Sidebar with Image Links -->
+    <div class="sidebar">
+        <h3 style="color:black; font-size:27px">All Products</h3>
+        <a href="#" onclick="openModal('Frock1.jpg')" style="margin-left: 10px;"><p>Pink Frock</p></a>
+        <a href="#" onclick="openModal('Frock2.jpg')"><p> YellowFrock</p></a>
+        <a href="#" onclick="openModal('Frock3.jpg')"><p> Green Frock</p></a>
+        <a href="#" onclick="openModal('Frock4.jpg')"><p>Babypink Frock</p></a>
+        <a href="#" onclick="openModal('Frock5.jpg')"><p>Blue Frock</p></a>
+        <a href="#" onclick="openModal('Jeans1.jpg')"><p>Wide-leg jeans</p></a>
+            <a href="#" onclick="openModal('Jeans2.jpg')"><p>Torn-Jeans</p></a>
+            <a href="#" onclick="openModal('Jeans3.jpg')"><p>Blue- Skinfit </p></a>
+            <a href="#" onclick="openModal('Jeans4.jpg')"><p>Blue Jogger</p></a>
+            <a href="#" onclick="openModal('Jeans5.jpg')"><p>Black-skinfit</p></a>
+            <a href="#" onclick="openModal('Lehenga1.jpg')"><p>Beige Lehenga</p></a>
+             <a href="#" onclick="openModal('Lehenga2.jpg')"><p>Deep-V- Lehenga</p></a>
+             <a href="#" onclick="openModal('Lehenga3.jpg')"><p>Olive Green Lehenga</p></a>
+             <a href="#" onclick="openModal('Lehenga4.jpg')"><p>Off-Shoulder Lehenga</p></a>
+             <a href="#" onclick="openModal('Lehenga5.jpg')"><p>Lavendar Lehenga</p></a>
+             <a href="#" onclick="openModal('Saree1.jpg')"><p>Red saree</p></a>
+             <a href="#" onclick="openModal('Saree2.jpg')"><p>Aquatic-blue saree</p></a>
+             <a href="#" onclick="openModal('Saree3.jpg')"><p>Blue Saree</p></a>
+             <a href="#" onclick="openModal('Saree4.jpg')"><p>Black Saree</p></a>
+             <a href="#" onclick="openModal('Saree5.jpg')"><p>White and Red Saree</p></a>
+             <a href="#" onclick="openModal('Shrug1.jpg')"><p>Transparent floral Shrug</p></a>
+             <a href="#" onclick="openModal('Shrug2.jpg')"><p>Rainbow shrug</p></a>
+             <a href="#" onclick="openModal('Shrug3.jpg')"><p>Blue-transparent shrug</p></a>
+             <a href="#" onclick="openModal('Shrug4.jpg')"><p>Maroon Shrug</p></a>
+             <a href="#" onclick="openModal('Shrug5.jpg')"><p>Multicolor Shrug</p></a>
+
+    </div>
+    <div class="allImages">
+        <div class="product" id="frock-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Frock1.jpg" alt="Frock" id="frock">
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 250/-</p>
+            <p>Available sizes: L, M, XS</p>
+            <p>
+            <ion-icon class="ratingStar" name="star"></ion-icon>           
+            <ion-icon class="ratingStar" name="star"></ion-icon>
+            <ion-icon class="ratingStar" name="star"></ion-icon>
+            <ion-icon class="ratingStar" name="star"></ion-icon>
+            <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="frock-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Frock2.jpg" alt="Frock" id="frock">
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 300/-</p>
+            <p>Available sizes: L, XL, XS</p>
+            <p>
+                <ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="frock-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Frock3.jpg" alt="Frock" id="frock" >
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 350/-</p>
+            <p>Available sizes: L, M, S</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon></p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="frock-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Frock4.jpg" alt="Frock" id="frock">
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 400/-</p>
+            <p>Available sizes: L, M, </p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon></p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="frock-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Frock5.jpg" alt="Frock" id="frock">
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 490/-</p>
+            <p>Available sizes: L, M, XL</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon></p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="jeans-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Jeans1.jpg" alt="Frock" id="jeans">
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 299/-</p>
+            <p>Available sizes: M, XS</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon></p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="jeans-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Jeans2.jpg" alt="Frock" id="Jeans">
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 799/-</p>
+            <p>Available sizes: XL,L, M</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon></p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="jeans-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Jeans3.jpg" alt="Frock" id="Jeans">
+                    <img src="saree1.jpg" alt="Saree" id="Saree">
+                    <img src="saree2.jpg" alt="Saree" id="Saree">
+                </div>
+            </div>
+            <p>MRP: 499/-</p>
+            <p>Available sizes: L, M, XS</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="jeans-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Jeans4.jpg" alt="Frock" id="Jeans">
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 599/-</p>
+            <p>Available sizes: L, M, XS</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="jeans-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Jeans5.jpg" alt="Frock" id="Jeans">
+                    <img src="saree1.jpg" alt="Saree" id="saree">
+                    <img src="saree2.jpg" alt="Saree" id="saree">
+                </div>
+            </div>
+            <p>MRP: 899/-</p>
+            <p>Available sizes: L, M, XS</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        
+        <div class="product" id="lehenga-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Lehenga1.jpg" alt="Frock" id="Lehenga">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 1399/-</p>
+            <p>Available sizes :Free size</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="lehenga-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Lehenga2.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 1700/-</p>
+            <p>Available sizes :Free size</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="lehenga-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Lehenga3.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 2100/-</p>
+            <p>Available sizes :Free size</p>
+            <p>
+            <ion-icon class="ratingStar" name="star"></ion-icon>           
+            <ion-icon class="ratingStar" name="star"></ion-icon>
+            <ion-icon class="ratingStar" name="star"></ion-icon>
+            <ion-icon class="ratingStar" name="star"></ion-icon>
+            <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="lehenga-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Lehenga4.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 1699/-</p>
+            <p>Available sizes :Free size</p>
+            <p>
+            <ion-icon class="ratingStar" name="star"></ion-icon>           
+            <ion-icon class="ratingStar" name="star"></ion-icon>
+            <ion-icon class="ratingStar" name="star"></ion-icon>
+            <ion-icon class="ratingStar" name="star-half"></ion-icon>
+            <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="lehenga-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Lehenga5.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 2500/-</p>
+            <p>Available sizes :Free size</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-otline"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="saree-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Saree1.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 800/-</p>
+            <p>Only few left..!!</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="saree-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Saree2.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 900/-</p>
+            <p>Only 6 left..Hurry UP!!</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="saree-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Saree3.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 700/-</p>
+            <p>Only few left..!!</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="saree-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Saree4.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 1000/-</p>
+            <p>Only2 left..Dont miss the chance</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="saree-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Saree5.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 890/-</p>
+            <p>Only few left..!!</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="shrug-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Shrug1.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 499/-</p>
+            <p>Available sizes: M, L, XL</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="shrug-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Shrug2.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 399/-</p>
+            <p>Available sizes: M, L, XL</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="shrug-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Shrug3.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 499/-</p>
+            <p>Available sizes: M, L, XL</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="shrug-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Shrug4.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 699/-</p>
+            <p>Available sizes: M, L, XL</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product" id="shrug-container">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="Shrug5.jpg" alt="Frock">
+                    <img src="saree1.jpg" alt="Saree">
+                    <img src="saree2.jpg" alt="Saree">
+                </div>
+            </div>
+            <p>MRP: 700/-</p>
+            <p>Available sizes: M, L, XL</p>
+            <p><ion-icon class="ratingStar" name="star"></ion-icon>           
+                <ion-icon class="ratingStar" name="star"></ion-icon>
+                <ion-icon class="ratingStar" name="star-half"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+                <ion-icon class="ratingStar" name="star-outline"></ion-icon>
+            </p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+    
+</div>
+
+<div class="word">
+    <span>O</span>
+    <span>u</span>
+    <span>r</span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span>P</span>
+    <span>a</span>
+    <span>r</span>
+    <span>t</span>
+    <span>n</span>
+    <span>e</span>
+    <span>r</span>
+    <span>s....</span>
+
+</div>
+
+<!-- Modal for Enlarged Image -->
+<div class="modal" id="imageModal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <img id="modalImg" src="" alt="Modal Image">
+    </div>
+    </div>
+
+<!--Details of members of our company-->
+    <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="image4.jpg" alt="Jane" style="width:100%">
+            <div class="container3">
+              <h2>Prathyusha</h2> <br>
+              <p class="title">CEO &amp; Founder</p>
+              <p style="color: black;">"I am a visionary leader, driving innovation,empowering teams, and shaping a successful,growth-oriented company."</p><br>
+              <p>example@example.com</p><br>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>      
+        <div class="column">
+          <div class="card">
+            <img src="image1.jpg" alt="Mike" style="width:100%">
+            <div class="container3">
+              <h2>Prathibha</h2> <br>
+              <p class="title">Art Director</p> <br>
+              <p>"I design trends, curate styles, and craft visually stunning fashion brand experiences."</p><br>
+              <p>example@example.com</p><br>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>      
+        <div class="column">
+          <div class="card">
+            <img src="image2.jpg" alt="John" style="width:100%">
+            <div class="container3">
+              <h2>Mahaswitha</h2> <br>
+              <p class="title">Designer</p><br>
+              <p>"I create elegant designs, blend creativity with fashion, and bring unique styles to life."</p> <br>
+              <p>example@example.com</p><br>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+            <div class="card">
+              <img src="image3.jpg" alt="John" style="width:100%">
+              <div class="container3">
+                <h2>Rinku</h2> <br>
+                <p class="title">CRM</p>
+                <p>"I build strong customer relationships, enhance loyalty,and drive business growth through personalized experiences."</p><br>
+                <p>example@example.com</p><br>
+                <p><button class="button">Contact</button></p>
+              </div>
+            </div>
+          </div>
+      </div>
+
+     <!--Footer section-->
+    <footer class="footer">
+        <div class="container2">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><strong>Address:</strong> KPHB Main Street, Hyderabad, India</p>
+                    <p><strong>Phone:</strong> +91 99999 99999</p>
+                    <p><strong>Email:</strong> info@yourstore.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <a href="#">Facebook</a> | 
+                    <a href="#">Instagram</a> | 
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">&copy; 2025 Your Store Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+
+function showFrockImages() {   
+    
+    let allProducts = document.querySelectorAll(".product");
+    
+    // Hide all products first
+    allProducts.forEach(product => {
+        product.style.display = "none";
+    });
+
+    // Show only the frock products
+    let frockProducts = document.querySelectorAll("#frock-container");
+    frockProducts.forEach(frock => {
+        frock.style.width = "200px";
+        frock.style.height = "350px";        
+       frock.style.display="flex";
+    });
+}
+
+//width: 200px; /* Fixed width */
+// height: 350px; /* Fixed height */
+//             overflow: hidden;
+//             display: flex;
+//             flex-direction: column; /* Stack content vertically */
+//             align-items:flex-start; /* Center align text */
+
+function showJeansImages(){
+    let allProducts = document.querySelectorAll(".product");
+    
+    // Hide all products first
+    allProducts.forEach(product => {
+        product.style.display = "none";
+    });
+
+        // show only jeans products
+    let jeansProducts = document.querySelectorAll("#jeans-container");
+    jeansProducts.forEach(jeans => {
+        jeans.style.width = "200px";
+        jeans.style.height = "350px";        
+       jeans.style.display="flex";
+    });
+}   
+ 
+function showLehengaImages(){
+    let allProducts = document.querySelectorAll(".product");
+    
+    // Hide all products first
+    allProducts.forEach(product => {
+        product.style.display = "none";
+    });
+
+        // show only lehenga products
+    let lehengaProducts = document.querySelectorAll("#lehenga-container");
+    lehengaProducts.forEach(lehenga => {
+        lehenga.style.width = "200px";
+        lehenga.style.height = "350px";        
+       lehenga.style.display="flex";
+    });
+}  
+
+function showSareeImages(){
+    let allProducts = document.querySelectorAll(".product");
+    
+    // Hide all products first
+    allProducts.forEach(product => {
+        product.style.display = "none";
+    });
+
+        // show only saree products
+    let sareeProducts = document.querySelectorAll("#saree-container");
+    sareeProducts.forEach(saree => {
+        saree.style.width = "200px";
+        saree.style.height = "350px";        
+       saree.style.display="flex";
+    });
+}  
+
+function showShrugImages(){
+    let allProducts = document.querySelectorAll(".product");
+    
+    // Hide all products first
+    allProducts.forEach(product => {
+        product.style.display = "none";
+    });
+
+        // show only shrug products
+    let shrugProducts = document.querySelectorAll("#shrug-container");
+    shrugProducts.forEach(shrug => {
+        shrug.style.width = "200px";
+        shrug.style.height = "350px";        
+       shrug.style.display="flex";
+    });
+}  
+
+function openModal(imageSrc) {
+        document.getElementById('modalImg').src = imageSrc;
+        document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }  
+
+
+    </script>
+</body>
+</html>
